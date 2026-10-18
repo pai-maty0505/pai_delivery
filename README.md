@@ -1,4 +1,4 @@
-# pai_delivery
+# pai_humanoid_delivery
 
 人型ロボット **Unitree G1** が事務所の椅子から立ち上がってドアを開け、廊下の配達員から **MacBook Air の箱（33 × 25 × 5 cm、1.23 kg）** を手で受け取り、机まで運んで置く。物理シミュレータ **MuJoCo** の中だけで行う。
 
