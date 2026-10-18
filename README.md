@@ -99,7 +99,7 @@ sudo apt install ffmpeg open-jtalk open-jtalk-mecab-naist-jdic hts-voice-nitech-
 
 ---
 
-## 3. 実行方法
+## 3. 動画作成方法
 
 学習済みの方策（`models/`）で、事務所の場面の A〜D を通す。CPU で動く（1 回およそ 5〜10 分）。
 
