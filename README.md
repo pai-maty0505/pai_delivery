@@ -101,11 +101,20 @@ sudo apt install ffmpeg open-jtalk open-jtalk-mecab-naist-jdic hts-voice-nitech-
 
 ## 3. 動画作成方法
 
-学習済みの方策（`models/`）で、事務所の場面の A〜D を通す。CPU で動く（1 回およそ 5〜10 分）。
+動画は、3.1 で作り、3.2 で見る。
+
+| | 3.1 A〜D を通して動画を作る | 3.2 動画を見る |
+|---|---|---|
+| すること | シミュレーションを動かし、その様子を動画のファイルに書き出す。声とノックの音を入れ、93 秒に切る | 3.1 でできた動画のファイルを、ブラウザやプレーヤーで再生する |
+| ロボットを動かすか | 動かす（学習済みの方策 `models/` を使う。CPU で 1 回およそ 5〜10 分） | 動かさない（できた動画を見るだけ） |
+| 使うもの | Python の環境（`.venv_mjx`）、ffmpeg、Open JTalk | 動画を再生できるソフト（Chrome・Firefox・ffplay） |
+| できるもの | `logs/full_run.mp4` などの動画のファイル | なし |
 
 ### 3.1 A〜D を通して動画を作る
 
-条件（摩擦・止まる位置）の 2 番目で A〜D を通し、動画を書き出す（声なし）：
+シミュレーションの中でロボットを動かし、A〜D を通す様子を動画のファイルにする。条件（摩擦・止まる位置）は 2 番目を使う。
+
+まず、A〜D を通し、動画を書き出す（声なし）：
 
 ```bash
 mkdir -p logs && JAX_PLATFORMS=cpu .venv_mjx/bin/python scripts/full_run.py --walk carry10 --place_walk carry24b_1 --lateral 1 --seed 2 --video logs/full_run.mp4 --events logs/full_run_events.json
@@ -132,6 +141,8 @@ ffmpeg -y -i logs/full_run_voice.mp4 -t 93 -c:v libx264 -crf 20 -pix_fmt yuv420p
 
 ### 3.2 動画を見る
 
+3.1 でできた動画のファイルを再生する。ロボットは動かさない。
+
 動画は普通の形式（H.264 の映像と AAC の音声、1280 × 720）。Ubuntu の「ビデオ」（Totem）は、OpenGL が使えない環境では「OpenGL サポートを初期化できませんでした」と出て開けない。そのときは、ブラウザか ffplay で開く。
 
 Google Chrome で開く：
@@ -154,15 +165,7 @@ ffplay -autoexit logs/full_run_voice_93s.mp4
 
 ファイルマネージャーからなら、ファイルを右クリックして「別のアプリケーションで開く」から Chrome か Firefox を選ぶ。
 
-### 3.3 条件を変えて 8 回通す（成功の数を数える）
-
-床の摩擦 0.5〜1.0、箱と手の摩擦 0.8〜1.2、箱と机の摩擦 0.3〜0.6、机の前で止まる位置（前後 ±2 cm・左右 ±3 cm）を変えて、8 回通す。4 つずつ同時に動かす。結果は `logs/test.jsonl`（1 回 1 行）：
-
-```bash
-mkdir -p logs && FR_ARGS="--lateral 1 --no_label" scripts/full_run_batch.sh carry10 8 logs/test.jsonl carry24b_1
-```
-
-### 3.4 `full_run.py` の主な引数
+### 3.3 `full_run.py` の主な引数（3.1 で使う）
 
 | 引数 | 意味 |
 |---|---|
@@ -238,13 +241,15 @@ GPU で 100 体ずつ、学習の環境の中の場面（運ぶ・受け取る�
 .venv_mjx/bin/python scripts/eval_carry.py --name carry24b_1
 ```
 
-事務所の場面で試すときは、3.3 の `full_run_batch.sh` の最後の引数（D の方策）を学習した方策の名前にする。
+事務所の場面で試すときは、5.2 の `full_run_batch.sh` の最後の引数（D の方策）を学習した方策の名前にする。
 
 ---
 
 ## 5. 結果
 
-条件をばらつかせて A〜D を 8 回通した。
+### 5.1 結果
+
+条件をばらつかせて A〜D を 8 回通した（確かめ方は 5.2）。
 
 | A | B | C | D | 通し |
 |---|---|---|---|---|
@@ -256,6 +261,14 @@ GPU で 100 体ずつ、学習の環境の中の場面（運ぶ・受け取る�
 - B：箱が持つ位置から 3 cm 以内。
 - C：箱を落とさず、止まる位置のずれが 6 cm 未満。
 - D：箱の底が机の高さ、傾き 3° 未満、四隅が机の内側、足の動き 2 cm 未満。
+
+### 5.2 結果の確かめ方（条件を変えて 8 回通す）
+
+動画を作る手順（3 章）とは別の試験で、いつ行ってもよい。動画は作らずに、床の摩擦 0.5〜1.0、箱と手の摩擦 0.8〜1.2、箱と机の摩擦 0.3〜0.6、机の前で止まる位置（前後 ±2 cm・左右 ±3 cm）を変えて、8 回通す。4 つずつ同時に動かす。結果は `logs/test.jsonl`（1 回 1 行）：
+
+```bash
+mkdir -p logs && FR_ARGS="--lateral 1 --no_label" scripts/full_run_batch.sh carry10 8 logs/test.jsonl carry24b_1
+```
 
 ---
 
