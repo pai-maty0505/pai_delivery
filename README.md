@@ -3,6 +3,9 @@
 人型ロボット **Unitree G1** が事務所の椅子から立ち上がってドアを開け、廊下の配達員から **MacBook Air の箱（33 × 25 × 5 cm、1.23 kg）** を手で受け取り、机まで運んで置く。物理シミュレータ **MuJoCo** の中だけで行う。
 
 <p>
+  <img src="docs/seated.png" width="49%" alt="椅子に座って待つ G1（動画の始め）">
+</p>
+<p>
   <img src="docs/handover.png" width="49%" alt="戸口で配達員から箱を受け取る G1（動画の 0:44）">
   <img src="docs/placed.png" width="49%" alt="箱を机に置き終えた G1（動画の 1:30）">
 </p>
