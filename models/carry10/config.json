@@ -1,0 +1,238 @@
+{
+ "kind": "carry",
+ "init": "models/carry9x/params.pkl",
+ "env": {
+  "action_repeat": 1,
+  "action_scale": 0.5,
+  "ang_vel_yaw": [
+   -0.8,
+   0.8
+  ],
+  "arm_damping": 2.0,
+  "case": {
+   "contact_solref": [
+    0.005,
+    1.0
+   ],
+   "desk_offset": 0.03,
+   "drop_speed": 0.3,
+   "friction_range": [
+    0.8,
+    1.2
+   ],
+   "hand_push": {
+    "dur_range": [
+     1.0,
+     2.0
+    ],
+    "force_range": [
+     5.0,
+     25.0
+    ],
+    "p": 0.3,
+    "time_range": [
+     2.0,
+     15.0
+    ]
+   },
+   "lift": 0.06,
+   "mass_range": [
+    1.23,
+    1.23
+   ],
+   "mode_p": [
+    0.25,
+    0.3,
+    0.1,
+    0.1,
+    0.25
+   ],
+   "onset_range": [
+    1.0,
+    10.0
+   ],
+   "release_range": [
+    3.0,
+    15.0
+   ],
+   "settle_range": [
+    1.0,
+    1.5
+   ],
+   "stop_range": [
+    1.0,
+    4.0
+   ],
+   "support_gap": 0.005
+  },
+  "command_config": {
+   "a": [
+    1.0,
+    0.8,
+    1.0
+   ],
+   "b": [
+    0.9,
+    0.25,
+    0.5
+   ]
+  },
+  "crouch_obs": true,
+  "ctrl_dt": 0.02,
+  "episode_length": 1000,
+  "estimator": {
+   "b": -0.8942915124542499,
+   "w": [
+    -0.13206706474915225,
+    -0.18154122959767685,
+    0.38572222093734104,
+    -0.0424183754195301,
+    3.950777955651492,
+    0.23616795671832427,
+    4.9340544943355455,
+    -0.01725662075759829,
+    0.1305738908676755,
+    -0.27046464033903383,
+    0.04437948187647546,
+    -3.1600750169947225,
+    0.5158823915469037,
+    -3.9027740594074816
+   ]
+  },
+  "grip": "tray",
+  "history_len": 1,
+  "impl": "warp",
+  "lin_vel_x": [
+   -0.3,
+   0.6
+  ],
+  "lin_vel_y": [
+   -0.2,
+   0.2
+  ],
+  "naconmax": 196608,
+  "njmax": 192,
+  "noise_config": {
+   "level": 1.0,
+   "scales": {
+    "gravity": 0.05,
+    "gyro": 0.2,
+    "joint_pos": 0.03,
+    "joint_vel": 1.5,
+    "linvel": 0.1
+   }
+  },
+  "obs_mode": "estimate",
+  "payload": {
+   "est_tau": 0.1,
+   "hold_range": [
+    2.0,
+    8.0
+   ],
+   "mass_range": [
+    0.0,
+    3.5
+   ],
+   "onset_range": [
+    1.0,
+    12.0
+   ],
+   "p_from_start": 0.25,
+   "p_never": 0.1,
+   "p_release": 0.4,
+   "pos_jitter": 0.03,
+   "split_range": [
+    0.4,
+    0.6
+   ]
+  },
+  "push_config": {
+   "enable": true,
+   "interval_range": [
+    5.0,
+    10.0
+   ],
+   "magnitude_range": [
+    0.1,
+    1.0
+   ]
+  },
+  "restricted_joint_range": false,
+  "reward_config": {
+   "base_height_target": 0.5,
+   "max_contact_force": 500.0,
+   "max_foot_height": 0.15,
+   "scales": {
+    "action_rate": 0.0,
+    "alive": 0.0,
+    "ang_vel_xy": -0.15,
+    "base_height": 0.0,
+    "case_drop": -100.0,
+    "case_slip": -3.0,
+    "collision": -0.1,
+    "contact_force": -0.01,
+    "crouch_height": -20.0,
+    "dof_acc": 0.0,
+    "dof_pos_limits": -1.0,
+    "energy": 0.0,
+    "feet_air_time": 2.0,
+    "feet_clearance": 0.0,
+    "feet_height": 0.0,
+    "feet_phase": 1.0,
+    "feet_slip": -0.25,
+    "joint_deviation_hip": -0.25,
+    "joint_deviation_knee": -0.1,
+    "lin_vel_z": 0.0,
+    "orientation": -2.0,
+    "pose": -0.1,
+    "stand_base_vel": -2.0,
+    "stand_feet_air": -2.0,
+    "stand_feet_vel": -4.0,
+    "stand_still": -1.0,
+    "termination": -100.0,
+    "torques": 0.0,
+    "tracking_ang_vel": 0.75,
+    "tracking_lin_vel": 1.0
+   },
+   "tracking_sigma": 0.25
+  },
+  "sim_dt": 0.002,
+  "soft_joint_pos_limit_factor": 0.95,
+  "solver_iterations": 10,
+  "solver_ls_iterations": 10
+ },
+ "ppo": {
+  "action_repeat": 1,
+  "batch_size": 256,
+  "clipping_epsilon": 0.2,
+  "discounting": 0.97,
+  "entropy_cost": 0.005,
+  "episode_length": 1000,
+  "learning_rate": 0.0003,
+  "max_grad_norm": 1.0,
+  "normalize_observations": true,
+  "num_envs": 8192,
+  "num_evals": 4,
+  "num_minibatches": 32,
+  "num_resets_per_eval": 1,
+  "num_timesteps": 60000000,
+  "num_updates_per_batch": 4,
+  "reward_scaling": 1.0,
+  "unroll_length": 20
+ },
+ "network": {
+  "policy_hidden_layer_sizes": [
+   512,
+   256,
+   128
+  ],
+  "policy_obs_key": "state",
+  "value_hidden_layer_sizes": [
+   512,
+   256,
+   128
+  ],
+  "value_obs_key": "privileged_state"
+ },
+ "seed": 0
+}

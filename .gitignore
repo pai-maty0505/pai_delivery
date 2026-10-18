@@ -1,0 +1,6 @@
+logs/
+__pycache__/
+*.pyc
+.venv_mjx
+MUJOCO_LOG.TXT
+models/case_label/
