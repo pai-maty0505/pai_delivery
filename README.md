@@ -4,9 +4,10 @@
 
 <p>
   <img src="docs/seated.png" width="49%" alt="椅子に座って待つ G1（動画の始め）">
+  <img src="docs/handover.png" width="49%" alt="戸口で配達員から箱を受け取る G1（動画の 0:44）">
 </p>
 <p>
-  <img src="docs/handover.png" width="49%" alt="戸口で配達員から箱を受け取る G1（動画の 0:44）">
+  <img src="docs/carry.png" width="49%" alt="箱を持って机へ運ぶ G1（動画の 1:14）">
   <img src="docs/placed.png" width="49%" alt="箱を机に置き終えた G1（動画の 1:30）">
 </p>
 
