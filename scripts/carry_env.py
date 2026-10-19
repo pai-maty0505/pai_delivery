@@ -1209,7 +1209,8 @@ class CarryJoystick(joystick.Joystick):
             "pl_t": 0, "m_eff": 0.0, "m_est": 0.0, "h_cmd": 0.0, "z_ref": 0.755, "desk_pos": FAR, "desk_quat": jp.array([1.0, 0, 0, 0]), "stop_xy": jp.zeros(2), "stop_yaw": 0.0, "ap_cmd": jp.zeros(3),
             "b_tgt": jp.zeros(3), "b_home": jp.zeros(3), "b_c1": jp.zeros(2), "b_yaw1": 0.0, "b_held": jp.array(False),
             "b_chold": jp.zeros(3), "b_qhold": jp.array([1.0, 0, 0, 0]), "b_qRh": jp.array([1.0, 0, 0, 0]),
-            "bu_xy0": jp.zeros(2), "bu_th0": 0.0, "tgoal": 0.0, "adj_n": jp.int32(0), "adj_T": jp.int32(0), "adj_v": jp.zeros(2),
+            "bu_xy0": jp.zeros(2), "bu_th0": 0.0, "tgoal": 0.0, "c_t0": jp.int32(10 ** 6),   # C の始め（A の続きからの練習で使う）
+            "adj_n": jp.int32(0), "adj_T": jp.int32(0), "adj_v": jp.zeros(2),
             "a_sub": jp.int32(0), "a_k": jp.int32(0), "a_still": jp.int32(0), "sh": jp.zeros(2), "sh_from": jp.zeros(2), "sh_to": jp.zeros(2),
             "shy": 0.0, "shy_from": 0.0, "shy_to": 0.0, **ep,
         }

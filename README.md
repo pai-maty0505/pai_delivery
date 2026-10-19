@@ -78,10 +78,18 @@ python3 -m venv .venv_mjx
 .venv_mjx/bin/pip install -r requirements.txt
 ```
 
-MuJoCo Playground は、初めて使うときに mujoco_menagerie 全体をダウンロードしようとする。G1 だけを取ってきて、リンクを置く：
+MuJoCo Playground は、初めて使うときに mujoco_menagerie 全体をダウンロードしようとする。G1 だけを取ってきて、リンクを置く（どのコマンドも、このリポジトリのいちばん上のフォルダで行う）：
 
 ```bash
-mkdir -p third_party && cd third_party && git clone --depth 1 --filter=blob:none --sparse https://github.com/google-deepmind/mujoco_menagerie.git && cd mujoco_menagerie && git sparse-checkout set unitree_g1
+git clone --depth 1 --filter=blob:none --sparse https://github.com/google-deepmind/mujoco_menagerie.git third_party/mujoco_menagerie
+```
+
+```bash
+git -C third_party/mujoco_menagerie sparse-checkout set unitree_g1
+```
+
+```bash
+mkdir -p .venv_mjx/lib/python3.12/site-packages/mujoco_playground/external_deps
 ```
 
 ```bash

@@ -4,3 +4,4 @@ __pycache__/
 .venv_mjx
 MUJOCO_LOG.TXT
 models/case_label/
+third_party/
